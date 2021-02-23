@@ -99,12 +99,14 @@ public class Enlazada2SimpleRefer {
         }
     }
 
+    @Override
     public String toString() {
-        String str = "";
+        StringBuilder toret = new StringBuilder();
         for (Nodo actual = primero; actual.getSig() != null; actual = actual.getSig()) {
-            str += actual.getEl() + ", ";
+            toret.append(actual.getEl());
+            toret.append(", ");
         }
-        str += ultimo.getEl();
-        return str;
+        toret.append(ultimo.getEl());
+        return toret.toString();
     }
 }

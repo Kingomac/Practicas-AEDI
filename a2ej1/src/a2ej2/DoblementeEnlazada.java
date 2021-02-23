@@ -85,14 +85,16 @@ public class DoblementeEnlazada {
     }
 
     public String toString() {
-        String str = "";
+        StringBuilder toret = new StringBuilder();
         DobleNodo actual = primero;
         while (actual.getSig() != null) {
-            str += actual.getEl() + ", ";
+            toret.append(actual.getEl());
+            toret.append(", ");
             actual = actual.getSig();
         }
-        str += actual.getEl() + ", ";
-        str += ultimo.getEl();
-        return str;
+        toret.append(actual.getEl());
+        toret.append(", ");
+        toret.append(ultimo.getEl());
+        return toret.toString();
     }
 }
