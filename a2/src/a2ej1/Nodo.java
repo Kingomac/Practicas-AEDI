@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package a2ej1;
 
 /**
@@ -14,6 +9,12 @@ public class Nodo {
     private int elemento;
     private Nodo siguiente;
 
+    /**
+     * Crea una nodo
+     *
+     * @param elemento Valor a almacenar
+     * @param siguiente Nodo al que referenciar como siguiente
+     */
     public Nodo(int elemento, Nodo siguiente) {
         this.elemento = elemento;
         this.siguiente = siguiente;
