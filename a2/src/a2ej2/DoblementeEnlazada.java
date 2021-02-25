@@ -28,7 +28,7 @@ public class DoblementeEnlazada {
             DobleNodo nuevo = new DobleNodo(el, null, null);
             primero = ultimo = nuevo;
         } else if (primero == ultimo) {
-            DobleNodo nuevo = new DobleNodo(el, null, ultimo);
+            DobleNodo nuevo = new DobleNodo(el, ultimo, null);
             primero = nuevo;
             ultimo.setAnt(primero);
         } else {
@@ -58,20 +58,22 @@ public class DoblementeEnlazada {
             primero = ultimo = null;
         } else {
             DobleNodo actual = primero;
-            while (actual.getSig().getSig() != null && actual.getEl() != el) {
+            while (actual.getSig() != null && actual.getEl() != el) {
                 actual = actual.getSig();
             }
-            if (actual == primero) {
-                primero = primero.getSig();
-                primero.setAnt(null);
-            } else if (actual == ultimo) {
-                ultimo = ultimo.getAnt();
-                ultimo.setSig(null);
+            if (actual.getEl() == el) {
+                if (actual == primero) {
+                    primero = primero.getSig();
+                    primero.setAnt(null);
+                } else if (actual == ultimo) {
+                    ultimo = ultimo.getAnt();
+                    ultimo.setSig(null);
+                } else {
+                    actual.getAnt().setSig(actual.getSig());
+                    actual.getSig().setAnt(actual.getAnt());
+                }
             } else {
-                //actual.getAnt().setSig(actual.getSig());
-                //actual.getSig().setAnt(actual.getAnt());
-                actual.setSig(actual.getSig().getSig());
-                actual.getSig().getSig().setAnt(actual);
+                System.out.println("El elemento \"" + el + "\" no está en la lista");
             }
         }
     }
@@ -92,8 +94,6 @@ public class DoblementeEnlazada {
             toret.append(", ");
             actual = actual.getSig();
         }
-        toret.append(actual.getEl());
-        toret.append(", ");
         toret.append(ultimo.getEl());
         return toret.toString();
     }

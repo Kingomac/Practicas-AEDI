@@ -5,6 +5,7 @@
  */
 package pruebas;
 
+import a2ej1.PruebaEj1;
 import a2ej2.PruebaEj2;
 import a2ej3.PruebaEj3;
 
@@ -19,7 +20,7 @@ public class A2ej1 {
      */
     public static void main(String[] args) {
         System.out.println("Pruebas ejercicio 1:");
-        //PruebaEj1.Main();
+        PruebaEj1.Main();
         System.out.println("-----------------------------------------------");
         System.out.println("Pruebas ejercicio 2:");
         PruebaEj2.Main();
