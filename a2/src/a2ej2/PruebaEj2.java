@@ -7,8 +7,8 @@ package a2ej2;
 public class PruebaEj2 {
 
     public static void Main() {
-        int a = 10;
-        int b = 10;
+        final int a = 10;
+        final int b = 10;
         DoblementeEnlazada lista = new DoblementeEnlazada();
         for (int i = 0; i < a; i++) {
             lista.insertarPrimero(i);

@@ -7,8 +7,8 @@ package a2ej1;
 public class PruebaEj1 {
 
     public static void Main() {
-        int a = 15;
-        int b = 5;
+        final int a = 15;
+        final int b = 5;
         Enlazada2SimpleRefer lista = new Enlazada2SimpleRefer();
         for (int i = 0; i < a; i++) {
             lista.insertarPrimero(i);
