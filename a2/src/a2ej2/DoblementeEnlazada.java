@@ -6,16 +6,22 @@ package a2ej2;
  */
 public class DoblementeEnlazada {
 
-    private DobleNodo primero, ultimo;
+    private DobleNodo primero;
+    private DobleNodo ultimo;
     private int cont;
 
     public DoblementeEnlazada() {
         primero = ultimo = null;
+        cont = 0;
     }
 
-    public int veces(int el) {
+    public boolean esVacia() {
+        return primero == null; //cont == 0; ultimo == null;
+    }
+
+    public int numVeces(int el) {
         int veces = 0;
-        for (DobleNodo actual = primero; actual.getSig() != null; actual = actual.getSig()) {
+        for (DobleNodo actual = primero; actual != null; actual = actual.getSig()) {
             if (actual.getEl() == el) {
                 veces++;
             }
@@ -23,34 +29,34 @@ public class DoblementeEnlazada {
         return veces;
     }
 
-    public void insertarPrimero(int el) {
-        if (primero == null) {
-            DobleNodo nuevo = new DobleNodo(el, null, null);
-            primero = ultimo = nuevo;
-        } else if (primero == ultimo) {
-            DobleNodo nuevo = new DobleNodo(el, ultimo, null);
-            primero = nuevo;
-            ultimo.setAnt(primero);
-        } else {
-            DobleNodo nuevo = new DobleNodo(el, primero, null);
-            primero.setAnt(nuevo);
-            primero = nuevo;
+    public boolean esta(int e) {
+        DobleNodo actual = primero;
+        while (actual != null && actual.getEl() != e) {
+            actual = actual.getSig();
         }
+        return actual != null;
+    }
+
+    public void insertarPrimero(int el) {
+        DobleNodo nuevo = new DobleNodo(el, primero, null);
+        if (esVacia()) {
+            ultimo = nuevo;
+        } else {
+            primero.setAnt(nuevo);
+        }
+        primero = nuevo;
+        cont++;
     }
 
     public void insertarFinal(int el) {
-        if (primero == null) {
-            DobleNodo nuevo = new DobleNodo(el, null, null);
-            primero = ultimo = nuevo;
-        } else if (primero == ultimo) {
-            DobleNodo nuevo = new DobleNodo(el, null, primero);
-            ultimo = nuevo;
-            primero.setSig(ultimo);
+        DobleNodo nuevo = new DobleNodo(el, null, ultimo);
+        if (esVacia()) {
+            primero = nuevo;
         } else {
-            DobleNodo nuevo = new DobleNodo(el, null, ultimo);
             ultimo.setSig(nuevo);
-            ultimo = nuevo;
         }
+        ultimo = nuevo;
+        cont++;
     }
 
     public void borrar(int el) {
@@ -72,8 +78,51 @@ public class DoblementeEnlazada {
                     actual.getAnt().setSig(actual.getSig());
                     actual.getSig().setAnt(actual.getAnt());
                 }
+                cont--;
             } else {
                 System.out.println("El elemento \"" + el + "\" no está en la lista");
+            }
+        }
+    }
+
+    /*
+        CASO 1: Lista vacía
+        CASO 2: Hay un solo elemento y coincide el que se quiere borrar
+        CASE 3: Hay más de un elemento y coincide el primero
+        CASO 4: Hay más de un elmento y no coincide ninguno
+        CASO 5: Hay más de un elemento y coincide el último
+        CASO 6: Hay más de un elemento y coincide por el medio
+     */
+    public void borrar2(int e) {
+        if (esVacia()) {
+            System.out.println("Lista vacía");
+        } else {
+            if (primero == ultimo && primero.getEl() == e) {
+                primero = ultimo = null;
+                cont--;
+            } else {
+                if (primero.getEl() == e) {
+                    primero.getSig().setAnt(null);
+                    primero = primero.getSig();
+                    cont--;
+                } else {
+                    DobleNodo actual = primero;
+                    while (actual != null && actual.getEl() != e) {
+                        actual = actual.getSig();
+                    }
+                    if (actual == null) {
+                        System.out.println("El elemento no está en la lista");
+                    } else {
+                        if (actual == ultimo) {
+                            ultimo.getAnt().setSig(null);
+                            ultimo = ultimo.getAnt();
+                        } else {
+                            actual.getAnt().setSig(actual.getSig());
+                            actual.getSig().setAnt(actual.getAnt());
+                        }
+                        cont--;
+                    }
+                }
             }
         }
     }
@@ -86,6 +135,11 @@ public class DoblementeEnlazada {
         return ultimo.getEl();
     }
 
+    public int getCont() {
+        return cont;
+    }
+
+    @Override
     public String toString() {
         StringBuilder toret = new StringBuilder();
         DobleNodo actual = primero;

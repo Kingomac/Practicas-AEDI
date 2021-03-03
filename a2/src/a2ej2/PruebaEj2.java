@@ -28,7 +28,7 @@ public class PruebaEj2 {
         System.out.println("Borrar 0 y -5: " + lista);
         lista.borrar(9);
         System.out.println("Borrar 9: " + lista);
-        System.out.println("Veces 2: " + lista.veces(2));
-        System.out.println("Veces 4: " + lista.veces(4));
+        System.out.println("Veces 2: " + lista.numVeces(2));
+        System.out.println("Veces 4: " + lista.numVeces(4));
     }
 }

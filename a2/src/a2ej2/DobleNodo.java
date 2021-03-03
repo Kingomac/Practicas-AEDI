@@ -6,8 +6,9 @@ package a2ej2;
  */
 public class DobleNodo {
 
-    private int elemento;
-    private DobleNodo siguiente, anterior;
+    private final int elemento;
+    private DobleNodo siguiente;
+    private DobleNodo anterior;
 
     public DobleNodo(int el, DobleNodo sig, DobleNodo ant) {
         elemento = el;
