@@ -6,7 +6,6 @@
 package a3;
 
 import ej1.PruebaEj1;
-import ej2.PruebaEj2;
 
 /**
  *
@@ -21,7 +20,7 @@ public class A3 {
         System.out.println("Pruebas Ej1:");
         PruebaEj1.Main();
         System.out.println("--------------------------------------");
-        PruebaEj2.Main();
+        //PruebaEj2.Main();
     }
 
 }

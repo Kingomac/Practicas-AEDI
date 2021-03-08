@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ej1;
 
 /**
@@ -13,14 +8,13 @@ public class PruebaEj1 {
 
     public static void Main() {
         DoblementeEnlazadaCentinelas lista = new DoblementeEnlazadaCentinelas();
-        final int a = 10;
-        final int b = 10;
-        /*for (int i = 0; i < a; i++) {
-            lista.insertarFinal(i);
-        }*/
-        System.out.println(lista);
-        for (int i = b; i >= 0; i--) {
+        for (int i = 0; i <= 9; i++) {
             lista.insertarPrimero(i);
+        }
+        lista.insertarPrimero(9);
+        System.out.println(lista);
+        for (int i = 0; i < 20; i++) {
+            lista.insertarFinal(i);
         }
         System.out.println(lista);
         System.out.println("esta(0): " + lista.esta(5));
