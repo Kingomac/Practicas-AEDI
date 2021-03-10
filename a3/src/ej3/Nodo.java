@@ -12,7 +12,7 @@ package ej3;
 public class Nodo {
 
     private Nodo sig;
-    private int el;
+    private final int el;
 
     public Nodo(int el, Nodo sig) {
         this.el = el;

@@ -9,23 +9,23 @@ package a2ej5;
  *
  * @author Mario
  */
-public class Nodo {
+public class DobleNodo {
 
-    private Nodo sig;
-    private Nodo ant;
+    private DobleNodo sig;
+    private DobleNodo ant;
     private int el;
 
-    public Nodo(Nodo sig, Nodo ant, int el) {
+    public DobleNodo(DobleNodo sig, DobleNodo ant, int el) {
         this.sig = sig;
         this.ant = ant;
         this.el = el;
     }
 
-    public Nodo getSig() {
+    public DobleNodo getSig() {
         return sig;
     }
 
-    public Nodo getAnt() {
+    public DobleNodo getAnt() {
         return ant;
     }
 
@@ -33,11 +33,11 @@ public class Nodo {
         return el;
     }
 
-    public void setSig(Nodo sig) {
+    public void setSig(DobleNodo sig) {
         this.sig = sig;
     }
 
-    public void setAnt(Nodo ant) {
+    public void setAnt(DobleNodo ant) {
         this.ant = ant;
     }
 

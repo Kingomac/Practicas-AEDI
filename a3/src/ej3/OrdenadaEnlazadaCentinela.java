@@ -6,59 +6,64 @@ package ej3;
  */
 public class OrdenadaEnlazadaCentinela {
 
-    private Nodo primero;
+    private Nodo centinela;
+    private int numElem;
 
     public OrdenadaEnlazadaCentinela() {
-        primero = new Nodo(-0, null);
+        centinela = new Nodo(Integer.MIN_VALUE, null);
+        numElem = 0;
     }
 
     public boolean esta(int el) {
-        if (primero.getSig() == null) {
-            return false;
-        }
-        for (Nodo actual = primero.getSig(); actual.getSig() != null; actual = actual.getSig()) {
-            if (actual.getEl() == el) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void insertarFinal(int el) {
-        Nodo actual = primero;
-        while (actual.getSig() != null) {
+        Nodo actual = centinela.getSig();
+        // Como está ordenada se puede salir por haber encontradon un elemento mayor
+        // y entonces no hace falta seguir recorriendo la lista
+        while (actual != null && actual.getEl() < el) {
             actual = actual.getSig();
         }
-        actual.setSig(new Nodo(el, null));
+        if (actual == null || actual.getEl() > el) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
-    public void insertarPrimero(int el) {
-        Nodo nuevo = new Nodo(el, primero.getSig());
-        primero.setSig(nuevo);
+    public void insertar(int el) {
+        Nodo nuevo = new Nodo(el, null);
+        Nodo actual = centinela;
+        while (actual.getSig() != null && actual.getSig().getEl() < el) {
+            actual = actual.getSig();
+        }
+        nuevo.setSig(actual.getSig());
+        actual.setSig(nuevo);
+        numElem++;
     }
 
     public void borrar(int el) {
-        if (primero.getSig() != null) {
-            Nodo actual = primero.getSig();
-            while (actual.getSig().getSig() != null && actual.getSig().getEl() != el) {
+        Nodo actual = centinela;
+        if (actual.getSig() == null) {
+            System.out.println("Lista vacía");
+        } else {
+            while (actual.getSig() != null && actual.getSig().getEl() < el) {
                 actual = actual.getSig();
             }
-            if (actual.getSig().getEl() == el) {
+            if (actual.getSig() == null || actual.getSig().getEl() > el) {
+                System.out.println("El elemento no está en la lista");
+            } else {
                 actual.setSig(actual.getSig().getSig());
+                numElem--;
             }
         }
     }
 
     @Override
     public String toString() {
-        if (primero.getSig() == null) {
-            return "Lista vacía";
+        String toret = "";
+
+        for (Nodo actual = centinela.getSig(); actual != null; actual = actual.getSig()) {
+            toret += actual.getEl() + ", ";
         }
-        StringBuilder toret = new StringBuilder();
-        Nodo actual = primero.getSig();
-        for (; actual.getSig() != null; actual = actual.getSig()) {
-            toret.append(actual.getEl()).append(", ");
-        }
-        return toret.toString();
+
+        return toret;
     }
 }

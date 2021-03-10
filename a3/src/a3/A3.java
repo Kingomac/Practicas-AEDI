@@ -5,7 +5,7 @@
  */
 package a3;
 
-import ej1.PruebaEj1;
+import ej3.PruebaEj3;
 
 /**
  *
@@ -17,10 +17,11 @@ public class A3 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Pruebas Ej1:");
-        PruebaEj1.Main();
-        System.out.println("--------------------------------------");
+        //System.out.println("Pruebas Ej1:");
+        //PruebaEj1.Main();
+        //System.out.println("--------------------------------------");
         //PruebaEj2.Main();
+        PruebaEj3.main();
     }
 
 }
